@@ -24,20 +24,20 @@ def sendEnable(request: Request):
     keyboard.press(Keycode.BACKSLASH)
     time.sleep(0.1)
     keyboard.release_all()
-    return Response(request, "Enabled")
+    return Response(request, "Enabled", headers={"Access-Control-Allow-Origin": "*"})
 
 @server.route("/disable", GET)
 def sendDisable(request: Request):
     keyboard.press(Keycode.ENTER)
     time.sleep(0.1)
     keyboard.release_all()
-    return Response(request, "Disabled")
+    return Response(request, "Disabled", headers={"Access-Control-Allow-Origin": "*"})
 
 @server.route("/estop", GET)
 def sendEStop(request: Request):
     keyboard.press(Keycode.SPACEBAR)
     time.sleep(0.1)
     keyboard.release_all()
-    return Response(request, "Estopped")
+    return Response(request, "Estopped", headers={"Access-Control-Allow-Origin": "*"})
 
 server.serve_forever(str(wifi.radio.ipv4_address))
